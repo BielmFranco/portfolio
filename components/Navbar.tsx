@@ -2,15 +2,14 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Menu, X, Brain } from "lucide-react";
+import { Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "Início", href: "#hero" },
   { label: "Sobre", href: "#about" },
-  { label: "Experiência", href: "#experience" },
+  { label: "Stack", href: "#skills" },
   { label: "Projetos", href: "#projects" },
-  { label: "Certificações", href: "#certifications" },
-  { label: "Habilidades", href: "#skills" },
+  { label: "Cursos", href: "#certifications" },
   { label: "Contato", href: "#contact" },
 ];
 
@@ -48,22 +47,20 @@ export default function Navbar() {
       <motion.nav
         initial={{ y: -80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.6 }}
+        transition={{ duration: 0.5 }}
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-          scrolled ? "glass border-b border-white/5 shadow-xl" : ""
+          scrolled
+            ? "bg-[#0d0d10]/85 backdrop-blur-md border-b border-white/5"
+            : ""
         }`}
       >
-        <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
+        <div className="max-w-5xl mx-auto px-6 h-16 flex items-center justify-between">
           <button
             onClick={() => handleNav("#hero")}
-            className="flex items-center gap-2 group"
+            className="font-bold text-base text-white flex items-center gap-2"
           >
-            <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center group-hover:scale-110 transition-transform">
-              <Brain className="w-4 h-4 text-white" />
-            </div>
-            <span className="font-bold text-sm text-white hidden sm:block">
-              Gabriel<span className="text-purple-400">.ai</span>
-            </span>
+            <span className="text-cyan-400">&gt;_</span>
+            Gabriel
           </button>
 
           <div className="hidden md:flex items-center gap-1">
@@ -74,10 +71,10 @@ export default function Navbar() {
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-all duration-200 ${
+                  className={`px-3 py-1.5 rounded-md text-sm font-medium transition-all ${
                     isActive
-                      ? "text-white bg-white/10"
-                      : "text-slate-400 hover:text-white hover:bg-white/5"
+                      ? "text-cyan-400"
+                      : "text-slate-400 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -88,9 +85,9 @@ export default function Navbar() {
 
           <button
             onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-lg glass hover:bg-white/10 transition-colors"
+            className="md:hidden w-9 h-9 flex items-center justify-center rounded-md border border-white/10 hover:bg-white/5 transition-colors"
           >
-            {menuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           </button>
         </div>
       </motion.nav>
@@ -98,18 +95,18 @@ export default function Navbar() {
       <AnimatePresence>
         {menuOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -20 }}
+            initial={{ opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -20 }}
+            exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.2 }}
-            className="fixed top-16 left-0 right-0 z-40 glass border-b border-white/5 md:hidden"
+            className="fixed top-16 left-0 right-0 z-40 bg-[#0d0d10] border-b border-white/5 md:hidden"
           >
-            <div className="max-w-6xl mx-auto px-6 py-4 flex flex-col gap-1">
+            <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1">
               {navLinks.map((link) => (
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className="text-left px-3 py-2 rounded-lg text-sm text-slate-300 hover:text-white hover:bg-white/10 transition-colors"
+                  className="text-left px-3 py-2 rounded-md text-sm text-slate-300 hover:text-cyan-400 hover:bg-white/5 transition-colors"
                 >
                   {link.label}
                 </button>
