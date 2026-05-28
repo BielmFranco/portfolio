@@ -1,13 +1,16 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d0d10;
-  --foreground: #e8e8ea;
-  --accent: #22d3ee;
-  --accent-soft: rgba(34, 211, 238, 0.15);
-  --muted: #8a8a93;
-  --card: #15151a;
-  --border: rgba(255, 255, 255, 0.06);
+  --background: #050807;
+  --foreground: #d4f5d4;
+  --accent: #00ff41;
+  --accent-dim: #00b82e;
+  --accent-soft: rgba(0, 255, 65, 0.12);
+  --accent-glow: rgba(0, 255, 65, 0.4);
+  --muted: #4a8a4f;
+  --card: #0a120c;
+  --border: rgba(0, 255, 65, 0.15);
+  --border-bright: rgba(0, 255, 65, 0.4);
 }
 
 @theme inline {
@@ -25,9 +28,37 @@ html {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  font-family: var(--font-geist-mono), "JetBrains Mono", monospace;
   overflow-x: hidden;
-  letter-spacing: -0.01em;
+  letter-spacing: 0;
+  position: relative;
+}
+
+/* CRT scanlines overlay */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0,
+    transparent 2px,
+    rgba(0, 255, 65, 0.025) 2px,
+    rgba(0, 255, 65, 0.025) 3px
+  );
+  z-index: 100;
+  mix-blend-mode: overlay;
+}
+
+/* Subtle vignette */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  z-index: 99;
 }
 
 ::-webkit-scrollbar {
@@ -40,28 +71,55 @@ body {
 
 ::-webkit-scrollbar-thumb {
   background: var(--accent);
-  border-radius: 3px;
-  opacity: 0.5;
+  box-shadow: 0 0 8px var(--accent);
 }
 
 ::selection {
-  background: var(--accent-soft);
-  color: var(--foreground);
+  background: var(--accent);
+  color: var(--background);
+  text-shadow: 0 0 4px var(--background);
 }
 
 .card {
   background: var(--card);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  transition: border-color 0.2s ease, transform 0.2s ease;
+  border-radius: 4px;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  position: relative;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 8px;
+  height: 8px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+  opacity: 0.6;
+}
+
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 8px;
+  height: 8px;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+  opacity: 0.6;
 }
 
 .card:hover {
-  border-color: rgba(34, 211, 238, 0.3);
+  border-color: var(--border-bright);
+  box-shadow: 0 0 24px rgba(0, 255, 65, 0.1);
 }
 
 .accent {
   color: var(--accent);
+  text-shadow: 0 0 8px var(--accent-glow);
 }
 
 .muted {
@@ -80,20 +138,163 @@ body {
   }
 }
 
-.dot-bg {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.07) 1px, transparent 1px);
-  background-size: 24px 24px;
+/* Matrix rain canvas wrapper */
+.matrix-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  opacity: 0.35;
+  pointer-events: none;
 }
 
+/* Glitch text effect */
+.glitch {
+  position: relative;
+  color: var(--foreground);
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+}
+
+.glitch::before {
+  left: 2px;
+  text-shadow: -2px 0 #ff0080;
+  animation: glitch-1 2.5s infinite linear alternate-reverse;
+  clip-path: polygon(0 0, 100% 0, 100% 45%, 0 45%);
+}
+
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #00ffff;
+  animation: glitch-2 3s infinite linear alternate-reverse;
+  clip-path: polygon(0 55%, 100% 55%, 100% 100%, 0 100%);
+}
+
+@keyframes glitch-1 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+}
+
+@keyframes glitch-2 {
+  0%, 100% { transform: translate(0); }
+  20% { transform: translate(1px, -1px); }
+  40% { transform: translate(1px, 1px); }
+  60% { transform: translate(-1px, -1px); }
+  80% { transform: translate(-1px, 1px); }
+}
+
+/* Terminal blink cursor */
+.cursor-blink::after {
+  content: "▊";
+  color: var(--accent);
+  animation: blink 1s step-end infinite;
+  margin-left: 2px;
+}
+
+@keyframes blink {
+  50% { opacity: 0; }
+}
+
+/* Neon glow box */
+.glow-box {
+  box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.05);
+}
+
+/* Binary backdrop */
+.binary-bg {
+  background-image:
+    linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.03) 50%, transparent),
+    repeating-linear-gradient(0deg, transparent 0, transparent 19px, rgba(0, 255, 65, 0.04) 19px, rgba(0, 255, 65, 0.04) 20px);
+}
+
+/* Pulsing dot for status */
+.pulse-dot {
+  position: relative;
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 8px var(--accent);
+}
+
+.pulse-dot::before {
+  content: "";
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--accent);
+  animation: pulse-ring 1.6s ease-out infinite;
+}
+
+@keyframes pulse-ring {
+  0% { transform: scale(0.6); opacity: 1; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* HUD corner brackets for sections */
+.hud-corners {
+  position: relative;
+}
+
+.hud-corners::before,
+.hud-corners::after {
+  content: "";
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-color: var(--accent);
+  pointer-events: none;
+}
+
+.hud-corners::before {
+  top: -1px;
+  left: -1px;
+  border-top: 1px solid var(--accent);
+  border-left: 1px solid var(--accent);
+}
+
+.hud-corners::after {
+  bottom: -1px;
+  right: -1px;
+  border-bottom: 1px solid var(--accent);
+  border-right: 1px solid var(--accent);
+}
+
+/* Glow text */
+.glow-text {
+  text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
+}
+
+/* Custom link */
 .link-arrow {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
   color: var(--accent);
-  font-weight: 500;
-  transition: gap 0.2s ease;
+  transition: gap 0.2s ease, text-shadow 0.2s ease;
 }
 
 .link-arrow:hover {
   gap: 0.6rem;
+  text-shadow: 0 0 8px var(--accent-glow);
+}
+
+/* Cyber grid */
+.cyber-grid {
+  background-image:
+    linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }

@@ -3,13 +3,13 @@
 export default function Footer() {
   const year = new Date().getFullYear();
   return (
-    <footer className="border-t border-white/5 py-6 px-6">
-      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-xs muted">
+    <footer className="border-t border-[#00ff41]/20 py-6 px-6 font-mono">
+      <div className="max-w-5xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3 text-[10px] text-[#4a8a4f] uppercase tracking-widest">
         <div className="flex items-center gap-2">
-          <span className="text-cyan-400 font-mono">&gt;_</span>
-          <span>Gabriel Moraes Franco</span>
+          <span className="pulse-dot" />
+          <span className="text-[#00ff41]">[ END_OF_TRANSMISSION ]</span>
         </div>
-        <p>© {year} — Construído com Next.js 16 + TailwindCSS</p>
+        <p>© {year} · Gabriel Moraes Franco · BUILT_WITH(Next.js, TS, Tailwind)</p>
       </div>
     </footer>
   );

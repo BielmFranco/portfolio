@@ -6,7 +6,17 @@ import SectionWrapper from "./SectionWrapper";
 
 export default function Skills() {
   return (
-    <SectionWrapper id="skills" number="02" title="Stack">
+    <SectionWrapper id="skills" number="02" title="ARSENAL">
+      <motion.div
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        viewport={{ once: true }}
+        transition={{ duration: 0.5 }}
+        className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6"
+      >
+        <span className="text-[#00ff41]">{">"}</span> ls -la ./capabilities/
+      </motion.div>
+
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
@@ -24,8 +34,10 @@ export default function Skills() {
             whileHover={{ y: -3 }}
             className="card p-4 flex flex-col items-center justify-center gap-2 text-center cursor-default"
           >
-            <span className="text-3xl">{item.emoji}</span>
-            <span className="text-xs font-medium text-white">{item.name}</span>
+            <span className="text-3xl filter drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">{item.emoji}</span>
+            <span className="text-[10px] font-mono font-bold text-[#00ff41] uppercase tracking-wider">
+              {item.name}
+            </span>
           </motion.div>
         ))}
       </motion.div>
