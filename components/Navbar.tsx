@@ -5,12 +5,13 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
 
 const navLinks = [
-  { label: "Início", href: "#hero" },
-  { label: "Sobre", href: "#about" },
-  { label: "Stack", href: "#skills" },
-  { label: "Projetos", href: "#projects" },
-  { label: "Cursos", href: "#certifications" },
-  { label: "Contato", href: "#contact" },
+  { num: "01", label: "Sobre", href: "#about" },
+  { num: "02", label: "Stack", href: "#skills" },
+  { num: "03", label: "Projetos", href: "#projects" },
+  { num: "04", label: "Cursos", href: "#certifications" },
+  { num: "05", label: "Experiência", href: "#experience" },
+  { num: "06", label: "Jornada", href: "#achievements" },
+  { num: "07", label: "Contato", href: "#contact" },
 ];
 
 export default function Navbar() {
@@ -64,21 +65,20 @@ export default function Navbar() {
           </button>
 
           <div className="hidden md:flex items-center gap-1 text-xs">
-            {navLinks.map((link, i) => {
+            {navLinks.map((link) => {
               const id = link.href.replace("#", "");
               const isActive = activeSection === id;
-              const num = String(i).padStart(2, "0");
               return (
                 <button
                   key={link.href}
                   onClick={() => handleNav(link.href)}
-                  className={`px-2.5 py-1 font-medium transition-all uppercase tracking-wider ${
+                  className={`px-2 py-1 font-medium transition-all uppercase tracking-wider ${
                     isActive
                       ? "text-[#00ff41] glow-text"
                       : "text-[#4a8a4f] hover:text-[#00ff41]"
                   }`}
                 >
-                  <span className="opacity-50">{num}/</span>{link.label}
+                  <span className="opacity-50">{link.num}/</span>{link.label}
                 </button>
               );
             })}
@@ -103,18 +103,15 @@ export default function Navbar() {
             className="fixed top-14 left-0 right-0 z-40 bg-[#050807] border-b border-[#00ff41]/20 md:hidden font-mono"
           >
             <div className="max-w-5xl mx-auto px-6 py-4 flex flex-col gap-1">
-              {navLinks.map((link, i) => {
-                const num = String(i).padStart(2, "0");
-                return (
-                  <button
-                    key={link.href}
-                    onClick={() => handleNav(link.href)}
-                    className="text-left px-3 py-2 text-xs uppercase tracking-wider text-[#4a8a4f] hover:text-[#00ff41] hover:bg-[#00ff41]/5 transition-colors"
-                  >
-                    <span className="opacity-50">{num}/</span>{link.label}
-                  </button>
-                );
-              })}
+              {navLinks.map((link) => (
+                <button
+                  key={link.href}
+                  onClick={() => handleNav(link.href)}
+                  className="text-left px-3 py-2 text-xs uppercase tracking-wider text-[#4a8a4f] hover:text-[#00ff41] hover:bg-[#00ff41]/5 transition-colors"
+                >
+                  <span className="opacity-50">{link.num}/</span>{link.label}
+                </button>
+              ))}
             </div>
           </motion.div>
         )}
