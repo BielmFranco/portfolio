@@ -5,17 +5,24 @@ import { ArrowUpRight } from "lucide-react";
 import { GithubIcon } from "@/components/icons/SocialIcons";
 import { projects } from "@/data/portfolio";
 import SectionWrapper from "./SectionWrapper";
+import { useT } from "@/lib/i18n";
 
 export default function Projects() {
+  const { t } = useT();
+
   return (
-    <SectionWrapper id="projects" number="03" title="MISSIONS">
+    <SectionWrapper id="projects" number="03" title={t.sections.projectsTitle} cmd={t.sections.projectsCmd}>
       <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> ./missions --list --status=active
+        <span className="text-[#00ff41]">{">"}</span> {t.sections.projectsListCmd}
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
         {projects.map((project, i) => {
           const code = `MSN_${String(project.id).padStart(3, "0")}`;
+          const translated = t.projects.find((p) => p.id === project.id);
+          const title = translated?.title ?? project.title;
+          const description = translated?.description ?? project.description;
+          const tags = translated?.tags ?? project.tags;
           return (
             <motion.a
               key={project.id}
@@ -36,13 +43,13 @@ export default function Projects() {
                     <div className="text-[10px] text-[#4a8a4f] uppercase tracking-widest">{code}</div>
                     <div className="text-[10px] text-[#00ff41] flex items-center gap-1">
                       <span className="w-1.5 h-1.5 rounded-full bg-[#00ff41] inline-block animate-pulse" />
-                      ACTIVE
+                      {t.badges.active}
                     </div>
                   </div>
                 </div>
                 {project.isReal && (
                   <span className="text-[9px] font-bold text-[#00ff41] border border-[#00ff41]/40 px-2 py-0.5 uppercase tracking-widest">
-                    VERIFIED
+                    {t.badges.verified}
                   </span>
                 )}
                 <ArrowUpRight className="w-5 h-5 text-[#4a8a4f] group-hover:text-[#00ff41] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
@@ -50,15 +57,15 @@ export default function Projects() {
 
               <div>
                 <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#00ff41] transition-colors uppercase tracking-wide">
-                  {project.title}
+                  {title}
                 </h3>
                 <p className="text-xs text-[#a8e6a8] leading-relaxed">
-                  <span className="text-[#00ff41]">{">"}</span> {project.description}
+                  <span className="text-[#00ff41]">{">"}</span> {description}
                 </p>
               </div>
 
               <div className="flex flex-wrap gap-1.5 mt-auto">
-                {project.tags.map((tag) => (
+                {tags.map((tag) => (
                   <span
                     key={tag}
                     className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[#00ff41]/20 text-[#00ff41] bg-[#00ff41]/5"

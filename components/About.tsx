@@ -1,12 +1,14 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { about } from "@/data/portfolio";
 import SectionWrapper from "./SectionWrapper";
+import { useT } from "@/lib/i18n";
 
 export default function About() {
+  const { t } = useT();
+
   return (
-    <SectionWrapper id="about" number="01" title="IDENTITY">
+    <SectionWrapper id="about" number="01" title={t.sections.aboutTitle} cmd={t.sections.aboutCmd}>
       <div className="grid md:grid-cols-5 gap-10 items-start">
         <motion.div
           initial={{ opacity: 0, x: -20 }}
@@ -32,7 +34,6 @@ export default function About() {
             <div className="relative w-full h-full flex items-center justify-center">
               <div className="text-8xl filter drop-shadow-[0_0_15px_rgba(0,255,65,0.5)]">👨‍💻</div>
             </div>
-            {/* Scanline */}
             <div className="absolute inset-0 pointer-events-none" style={{
               background: "linear-gradient(transparent 0%, transparent 49%, rgba(0,255,65,0.15) 50%, transparent 51%)",
               backgroundSize: "100% 200px",
@@ -41,7 +42,7 @@ export default function About() {
           </div>
 
           <div className="mt-6 space-y-1 font-mono text-xs">
-            {about.facts.map((fact) => (
+            {t.about.facts.map((fact) => (
               <div
                 key={fact.label}
                 className="flex justify-between border-b border-[#00ff41]/10 py-2"
@@ -68,9 +69,9 @@ export default function About() {
           className="md:col-span-3 space-y-4 font-mono"
         >
           <div className="text-xs text-[#4a8a4f] uppercase tracking-widest mb-4">
-            <span className="text-[#00ff41]">{">"}</span> cat ./identity.log
+            <span className="text-[#00ff41]">{">"}</span> {t.sections.aboutCatCmd}
           </div>
-          {about.paragraphs.map((p, i) => (
+          {t.about.paragraphs.map((p, i) => (
             <p key={i} className="text-sm text-[#a8e6a8] leading-relaxed border-l-2 border-[#00ff41]/30 pl-4">
               <span className="text-[#00ff41]">[{String(i + 1).padStart(2, "0")}]</span> {p}
             </p>

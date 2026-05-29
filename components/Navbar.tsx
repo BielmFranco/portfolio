@@ -3,21 +3,24 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
-
-const navLinks = [
-  { num: "01", label: "Sobre", href: "#about" },
-  { num: "02", label: "Stack", href: "#skills" },
-  { num: "03", label: "Projetos", href: "#projects" },
-  { num: "04", label: "Cursos", href: "#certifications" },
-  { num: "05", label: "Experiência", href: "#experience" },
-  { num: "06", label: "Jornada", href: "#achievements" },
-  { num: "07", label: "Contato", href: "#contact" },
-];
+import { useT } from "@/lib/i18n";
+import LanguageSwitcher from "@/components/LanguageSwitcher";
 
 export default function Navbar() {
+  const { t } = useT();
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState("hero");
   const [menuOpen, setMenuOpen] = useState(false);
+
+  const navLinks = [
+    { num: "01", label: t.nav.about, href: "#about" },
+    { num: "02", label: t.nav.stack, href: "#skills" },
+    { num: "03", label: t.nav.projects, href: "#projects" },
+    { num: "04", label: t.nav.courses, href: "#certifications" },
+    { num: "05", label: t.nav.experience, href: "#experience" },
+    { num: "06", label: t.nav.journey, href: "#achievements" },
+    { num: "07", label: t.nav.contact, href: "#contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -35,6 +38,7 @@ export default function Navbar() {
 
     window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleNav = (href: string) => {
@@ -55,10 +59,10 @@ export default function Navbar() {
             : ""
         }`}
       >
-        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between font-mono">
+        <div className="max-w-5xl mx-auto px-6 h-14 flex items-center justify-between font-mono gap-4">
           <button
             onClick={() => handleNav("#hero")}
-            className="text-xs sm:text-sm text-[#00ff41] font-bold flex items-center gap-2 uppercase tracking-widest hover:glow-text transition-all"
+            className="text-xs sm:text-sm text-[#00ff41] font-bold flex items-center gap-2 uppercase tracking-widest hover:glow-text transition-all flex-shrink-0"
           >
             <span className="pulse-dot" />
             <span>[ BIELMFRANCO ]</span>
@@ -84,12 +88,15 @@ export default function Navbar() {
             })}
           </div>
 
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="md:hidden w-9 h-9 flex items-center justify-center rounded-sm border border-[#00ff41]/30 hover:bg-[#00ff41]/5 transition-colors text-[#00ff41]"
-          >
-            {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
-          </button>
+          <div className="flex items-center gap-2">
+            <LanguageSwitcher />
+            <button
+              onClick={() => setMenuOpen(!menuOpen)}
+              className="md:hidden w-9 h-9 flex items-center justify-center rounded-sm border border-[#00ff41]/30 hover:bg-[#00ff41]/5 transition-colors text-[#00ff41]"
+            >
+              {menuOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+            </button>
+          </div>
         </div>
       </motion.nav>
 

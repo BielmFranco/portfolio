@@ -5,8 +5,11 @@ import { ArrowRight, MapPin } from "lucide-react";
 import { GithubIcon, LinkedinIcon } from "@/components/icons/SocialIcons";
 import { personalInfo } from "@/data/portfolio";
 import MatrixRain from "@/components/MatrixRain";
+import { useT } from "@/lib/i18n";
 
 export default function Hero() {
+  const { t } = useT();
+
   return (
     <section
       id="hero"
@@ -26,8 +29,8 @@ export default function Hero() {
           className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-[#00ff41] mb-6"
         >
           <span className="pulse-dot" />
-          <span className="glow-text">[ SYSTEM ONLINE ]</span>
-          <span className="muted">// IDENTITY VERIFIED</span>
+          <span className="glow-text">{t.hero.systemOnline}</span>
+          <span className="muted">{t.hero.identityVerified}</span>
         </motion.div>
 
         <motion.div
@@ -38,7 +41,7 @@ export default function Hero() {
         >
           <span className="text-[#00ff41]">root@bielmfranco</span>
           <span>:~$ </span>
-          <span>./decrypt --target=identity</span>
+          <span>{t.hero.promptDecrypt}</span>
         </motion.div>
 
         <motion.h1
@@ -59,8 +62,8 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-base sm:text-lg muted mb-3 font-mono"
         >
-          <span className="text-[#00ff41]">{">"}</span> {personalInfo.title}{" "}
-          <span className="text-[#00ff41]">::</span> Ciência da Computação
+          <span className="text-[#00ff41]">{">"}</span> {t.hero.role}{" "}
+          <span className="text-[#00ff41]">::</span> {t.hero.course}
         </motion.div>
 
         <motion.div
@@ -69,7 +72,7 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.4 }}
           className="font-mono text-sm text-[#a8e6a8] max-w-xl mb-8 leading-relaxed border-l-2 border-[#00ff41]/50 pl-4"
         >
-          <span className="text-[#00ff41]">{">"}</span> {personalInfo.description}
+          <span className="text-[#00ff41]">{">"}</span> {t.personal.description}
         </motion.div>
 
         <motion.div
@@ -79,7 +82,7 @@ export default function Hero() {
           className="flex items-center gap-2 text-xs font-mono muted mb-8 uppercase tracking-wider"
         >
           <MapPin className="w-3 h-3" />
-          <span>LOC:</span>
+          <span>{t.hero.loc}</span>
           <span className="text-[#a8e6a8]">{personalInfo.location}</span>
         </motion.div>
 

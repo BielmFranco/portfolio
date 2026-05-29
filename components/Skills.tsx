@@ -3,10 +3,13 @@
 import { motion } from "framer-motion";
 import { stack } from "@/data/portfolio";
 import SectionWrapper from "./SectionWrapper";
+import { useT } from "@/lib/i18n";
 
 export default function Skills() {
+  const { t } = useT();
+
   return (
-    <SectionWrapper id="skills" number="02" title="ARSENAL">
+    <SectionWrapper id="skills" number="02" title={t.sections.skillsTitle} cmd={t.sections.skillsCmd}>
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
@@ -14,7 +17,7 @@ export default function Skills() {
         transition={{ duration: 0.5 }}
         className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6"
       >
-        <span className="text-[#00ff41]">{">"}</span> ls -la ./capabilities/
+        <span className="text-[#00ff41]">{">"}</span> {t.sections.skillsListCmd}
       </motion.div>
 
       <motion.div

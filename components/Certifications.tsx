@@ -3,8 +3,11 @@
 import { motion } from "framer-motion";
 import { certifications } from "@/data/portfolio";
 import SectionWrapper from "./SectionWrapper";
+import { useT } from "@/lib/i18n";
 
 export default function Certifications() {
+  const { t } = useT();
+
   const grouped = certifications.reduce<Record<string, typeof certifications>>(
     (acc, cert) => {
       if (!acc[cert.issuer]) acc[cert.issuer] = [];
@@ -18,9 +21,9 @@ export default function Certifications() {
   const sorted = issuerOrder.filter((k) => grouped[k]);
 
   return (
-    <SectionWrapper id="certifications" number="04" title="CREDENTIALS">
+    <SectionWrapper id="certifications" number="04" title={t.sections.certsTitle} cmd={t.sections.certsCmd}>
       <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> ./decrypt_credentials --verified-only
+        <span className="text-[#00ff41]">{">"}</span> {t.sections.certsDecryptCmd}
       </div>
 
       <div className="space-y-8">
@@ -51,7 +54,7 @@ export default function Certifications() {
                       </h4>
                       {cert.isNew && (
                         <span className="text-[8px] font-bold text-[#00ff41] border border-[#00ff41] px-1 py-0.5 uppercase tracking-widest flex-shrink-0 glow-text">
-                          NEW
+                          {t.badges.new}
                         </span>
                       )}
                     </div>
