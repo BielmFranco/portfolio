@@ -80,7 +80,7 @@ type Dict = {
 const PT: Dict = {
   nav: {
     about: "Sobre",
-    stack: "Stack",
+    stack: "Skills",
     projects: "Projetos",
     courses: "Cursos",
     experience: "Experiência",
@@ -200,7 +200,7 @@ const PT: Dict = {
 const EN: Dict = {
   nav: {
     about: "About",
-    stack: "Stack",
+    stack: "Skills",
     projects: "Projects",
     courses: "Courses",
     experience: "Experience",
@@ -320,7 +320,7 @@ const EN: Dict = {
 const ES: Dict = {
   nav: {
     about: "Sobre Mí",
-    stack: "Stack",
+    stack: "Skills",
     projects: "Proyectos",
     courses: "Cursos",
     experience: "Experiencia",
