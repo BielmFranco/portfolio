@@ -192,7 +192,7 @@ const PT: Dict = {
   personal: {
     title: "Analista de Sistemas",
     description:
-      "Estudante de Ciência da Computação na UNIP, atuando como Analista de Sistemas com foco em Inteligência Artificial, Azure AI Foundry, Cloud Computing e desenvolvimento web.",
+      "Estudante de Ciência da Computação na UNIP | Analista de Sistemas | IA • GenIA • Cloud Computing • Automação e Desenvolvimento | Desenvolvendo soluções inteligentes para problemas reais.",
   },
   footer: "FIM DA TRANSMISSÃO",
 };
@@ -312,7 +312,7 @@ const EN: Dict = {
   personal: {
     title: "Systems Analyst",
     description:
-      "Computer Science student at UNIP, working as Systems Analyst with focus on Artificial Intelligence, Azure AI Foundry, Cloud Computing and web development.",
+      "Computer Science student at UNIP | Systems Analyst | AI • GenAI • Cloud Computing • Automation & Development | Building intelligent solutions for real-world problems.",
   },
   footer: "END_OF_TRANSMISSION",
 };
@@ -432,7 +432,7 @@ const ES: Dict = {
   personal: {
     title: "Analista de Sistemas",
     description:
-      "Estudiante de Ciencias de la Computación en UNIP, actuando como Analista de Sistemas con foco en Inteligencia Artificial, Azure AI Foundry, Cloud Computing y desarrollo web.",
+      "Estudiante de Ciencias de la Computación en UNIP | Analista de Sistemas | IA • GenIA • Cloud Computing • Automatización y Desarrollo | Desarrollando soluciones inteligentes para problemas reales.",
   },
   footer: "FIN_DE_TRANSMISIÓN",
 };
