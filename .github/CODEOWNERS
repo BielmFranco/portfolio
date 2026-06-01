@@ -1,0 +1,10 @@
+# Default reviewer for all changes.
+# Lock-down: only @BielmFranco approves merges on protected branches.
+* @BielmFranco
+
+# Security-sensitive files require explicit review.
+/next.config.ts          @BielmFranco
+/.github/                @BielmFranco
+/SECURITY.md             @BielmFranco
+/package.json            @BielmFranco
+/package-lock.json       @BielmFranco

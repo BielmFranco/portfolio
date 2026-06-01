@@ -1,0 +1,23 @@
+# Normalize line endings to LF in repo, regardless of OS.
+# Prevents the CRLF/LF warnings on Windows commits and
+# stops bogus diffs in cross-platform PRs.
+* text=auto eol=lf
+
+# Force LF for shell/CI scripts.
+*.sh        text eol=lf
+*.yml       text eol=lf
+*.yaml      text eol=lf
+
+# Binaries — never touch.
+*.png       binary
+*.jpg       binary
+*.jpeg      binary
+*.gif       binary
+*.ico       binary
+*.webp      binary
+*.woff      binary
+*.woff2     binary
+*.pdf       binary
+
+# Lockfile: text but no diff to keep PRs readable.
+package-lock.json -diff
