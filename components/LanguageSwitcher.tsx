@@ -59,8 +59,7 @@ export default function LanguageSwitcher() {
                       : "text-[var(--muted)] hover:text-[var(--accent)] hover:bg-[var(--accent)]/5"
                   }`}
                 >
-                  <span>{l.flag}</span>
-                  <span className="opacity-50">{l.code}/</span>
+                  <span className="text-base leading-none">{l.flag}</span>
                   <span>{l.label}</span>
                   {active && <span className="ml-auto text-[10px]">●</span>}
                 </button>
