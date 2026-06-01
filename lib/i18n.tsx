@@ -2,8 +2,10 @@
 
 import {
   createContext,
+  useCallback,
   useContext,
   useEffect,
+  useMemo,
   useState,
   ReactNode,
 } from "react";
@@ -452,25 +454,36 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
 
   useEffect(() => {
     if (typeof window === "undefined") return;
-    const saved = localStorage.getItem("portfolio-lang") as Lang | null;
-    if (saved && (saved === "pt" || saved === "en" || saved === "es")) {
-      setLangState(saved);
+    try {
+      const saved = localStorage.getItem("portfolio-lang") as Lang | null;
+      if (saved === "pt" || saved === "en" || saved === "es") {
+        setLangState(saved);
+      }
+    } catch {
+      // ignore localStorage errors (private mode, etc)
     }
   }, []);
 
-  const setLang = (next: Lang) => {
+  const setLang = useCallback((next: Lang) => {
     setLangState(next);
     if (typeof window !== "undefined") {
-      localStorage.setItem("portfolio-lang", next);
-      document.documentElement.lang = next === "pt" ? "pt-BR" : next;
+      try {
+        localStorage.setItem("portfolio-lang", next);
+        document.documentElement.lang = next === "pt" ? "pt-BR" : next;
+      } catch {
+        // ignore
+      }
     }
-  };
+  }, []);
 
-  const value: LangContextValue = {
-    lang,
-    setLang,
-    t: DICTS[lang],
-  };
+  const value = useMemo<LangContextValue>(
+    () => ({
+      lang,
+      setLang,
+      t: DICTS[lang],
+    }),
+    [lang, setLang]
+  );
 
   return <LangContext.Provider value={value}>{children}</LangContext.Provider>;
 }
