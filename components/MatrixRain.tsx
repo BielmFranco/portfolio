@@ -1,9 +1,11 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import { useTheme } from "@/lib/theme";
 
 export default function MatrixRain({ opacity = 0.35 }: { opacity?: number }) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const { theme } = useTheme();
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -28,8 +30,14 @@ export default function MatrixRain({ opacity = 0.35 }: { opacity?: number }) {
     let columns = Math.floor(canvas.width / fontSize);
     let drops: number[] = Array(columns).fill(1);
 
+    const isLight = theme === "light";
+    const bgFade = isLight ? "rgba(244, 247, 251, 0.10)" : "rgba(5, 8, 7, 0.08)";
+    const rainColor = isLight ? "0, 102, 255" : "0, 255, 65";
+    const leadColor = isLight ? "#0a1929" : "#d4ffd4";
+    const glowColor = isLight ? "#0066ff" : "#00ff41";
+
     const draw = () => {
-      ctx.fillStyle = "rgba(5, 8, 7, 0.08)";
+      ctx.fillStyle = bgFade;
       ctx.fillRect(0, 0, canvas.width, canvas.height);
 
       ctx.font = `${fontSize}px JetBrains Mono, monospace`;
@@ -38,13 +46,12 @@ export default function MatrixRain({ opacity = 0.35 }: { opacity?: number }) {
         const text = chars[Math.floor(Math.random() * chars.length)];
         const y = drops[i] * fontSize;
 
-        // Bright leading char
         if (Math.random() > 0.975) {
-          ctx.fillStyle = "#d4ffd4";
-          ctx.shadowColor = "#00ff41";
-          ctx.shadowBlur = 8;
+          ctx.fillStyle = leadColor;
+          ctx.shadowColor = glowColor;
+          ctx.shadowBlur = isLight ? 4 : 8;
         } else {
-          ctx.fillStyle = `rgba(0, 255, 65, ${0.5 + Math.random() * 0.5})`;
+          ctx.fillStyle = `rgba(${rainColor}, ${0.4 + Math.random() * 0.5})`;
           ctx.shadowBlur = 0;
         }
 
@@ -74,7 +81,7 @@ export default function MatrixRain({ opacity = 0.35 }: { opacity?: number }) {
       window.removeEventListener("resize", resize);
       window.removeEventListener("resize", onResize);
     };
-  }, []);
+  }, [theme]);
 
   return (
     <canvas

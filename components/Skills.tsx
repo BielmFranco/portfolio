@@ -15,9 +15,9 @@ export default function Skills() {
         whileInView={{ opacity: 1 }}
         viewport={{ once: true }}
         transition={{ duration: 0.5 }}
-        className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6"
+        className="font-mono text-xs text-[var(--muted)] uppercase tracking-widest mb-6"
       >
-        <span className="text-[#00ff41]">{">"}</span> {t.sections.skillsListCmd}
+        <span className="text-[var(--accent)]">{">"}</span> {t.sections.skillsListCmd}
       </motion.div>
 
       <motion.div
@@ -37,8 +37,8 @@ export default function Skills() {
             whileHover={{ y: -3 }}
             className="card p-4 flex flex-col items-center justify-center gap-2 text-center cursor-default"
           >
-            <span className="text-3xl filter drop-shadow-[0_0_8px_rgba(0,255,65,0.4)]">{item.emoji}</span>
-            <span className="text-[10px] font-mono font-bold text-[#00ff41] uppercase tracking-wider">
+            <span className="text-3xl filter drop-shadow-[0_0_8px_var(--accent-glow)]">{item.emoji}</span>
+            <span className="text-[10px] font-mono font-bold text-[var(--accent)] uppercase tracking-wider">
               {item.name}
             </span>
           </motion.div>

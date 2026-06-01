@@ -36,8 +36,8 @@ export default function Contact() {
 
   return (
     <SectionWrapper id="contact" number="07" title={t.sections.contactTitle} cmd={t.sections.contactCmd}>
-      <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> {t.sections.contactOpenCmd}
+      <div className="font-mono text-xs text-[var(--muted)] uppercase tracking-widest mb-6">
+        <span className="text-[var(--accent)]">{">"}</span> {t.sections.contactOpenCmd}
       </div>
 
       <div className="grid md:grid-cols-3 gap-6 items-start font-mono">
@@ -48,14 +48,14 @@ export default function Contact() {
           transition={{ duration: 0.5 }}
           className="md:col-span-1"
         >
-          <div className="text-xs text-[#4a8a4f] uppercase tracking-widest mb-3">
+          <div className="text-xs text-[var(--muted)] uppercase tracking-widest mb-3">
             {t.contact.transmissionReady}
           </div>
-          <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-wide glow-text">
-            {t.contact.heading1} <span className="text-[#00ff41]">{t.contact.heading2}</span>
+          <h3 className="text-xl font-bold text-[var(--foreground)] mb-3 uppercase tracking-wide glow-text">
+            {t.contact.heading1} <span className="text-[var(--accent)]">{t.contact.heading2}</span>
           </h3>
-          <p className="text-xs text-[#a8e6a8] leading-relaxed border-l-2 border-[#00ff41]/30 pl-3">
-            <span className="text-[#00ff41]">{">"}</span> {t.contact.description}
+          <p className="text-xs text-[var(--text-soft)] leading-relaxed border-l-2 border-[var(--accent)]/30 pl-3">
+            <span className="text-[var(--accent)]">{">"}</span> {t.contact.description}
           </p>
         </motion.div>
 
@@ -77,18 +77,18 @@ export default function Contact() {
                 className="card flex items-center gap-4 p-4 group"
               >
                 <div className="flex flex-col items-center justify-center gap-0.5">
-                  <span className="text-[8px] text-[#4a8a4f] uppercase tracking-widest">{link.code}</span>
-                  <Icon className="w-5 h-5 text-[#4a8a4f] group-hover:text-[#00ff41] transition-colors" />
+                  <span className="text-[8px] text-[var(--muted)] uppercase tracking-widest">{link.code}</span>
+                  <Icon className="w-5 h-5 text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors" />
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-[10px] text-[#4a8a4f] uppercase tracking-widest mb-0.5">
+                  <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest mb-0.5">
                     [ {link.label} ]
                   </div>
-                  <div className="text-sm text-white truncate group-hover:text-[#00ff41] transition-colors">
+                  <div className="text-sm text-[var(--foreground)] truncate group-hover:text-[var(--accent)] transition-colors">
                     {link.value}
                   </div>
                 </div>
-                <ArrowUpRight className="w-4 h-4 text-[#4a8a4f] group-hover:text-[#00ff41] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
+                <ArrowUpRight className="w-4 h-4 text-[var(--muted)] group-hover:text-[var(--accent)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all flex-shrink-0" />
               </a>
             );
           })}

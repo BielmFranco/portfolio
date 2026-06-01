@@ -18,7 +18,7 @@ export default function Hero() {
       <MatrixRain opacity={0.25} />
 
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#00ff41]/8 rounded-full blur-[140px]" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[var(--accent)]/8 rounded-full blur-[140px]" />
       </div>
 
       <div className="relative z-10 w-full max-w-3xl mx-auto">
@@ -26,7 +26,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
-          className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-[#00ff41] mb-6"
+          className="flex items-center gap-3 text-xs font-mono uppercase tracking-widest text-[var(--accent)] mb-6"
         >
           <span className="pulse-dot" />
           <span className="glow-text">{t.hero.systemOnline}</span>
@@ -39,7 +39,7 @@ export default function Hero() {
           transition={{ duration: 0.4, delay: 0.1 }}
           className="text-xs font-mono muted mb-2"
         >
-          <span className="text-[#00ff41]">root@bielmfranco</span>
+          <span className="text-[var(--accent)]">root@bielmfranco</span>
           <span>:~$ </span>
           <span>{t.hero.promptDecrypt}</span>
         </motion.div>
@@ -48,11 +48,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-5xl sm:text-7xl font-black tracking-tight text-white mb-3 leading-[1.05] font-mono uppercase"
+          className="text-5xl sm:text-7xl font-black tracking-tight text-[var(--foreground)] mb-3 leading-[1.05] font-mono uppercase"
         >
           <span className="glow-text">{personalInfo.firstName}</span>
           <br />
-          <span className="text-[#00ff41] glow-text">{personalInfo.lastName.split(" ")[0]}</span>{" "}
+          <span className="text-[var(--accent)] glow-text">{personalInfo.lastName.split(" ")[0]}</span>{" "}
           <span className="glow-text">{personalInfo.lastName.split(" ")[1]}</span>
         </motion.h1>
 
@@ -62,17 +62,17 @@ export default function Hero() {
           transition={{ duration: 0.5, delay: 0.3 }}
           className="text-base sm:text-lg muted mb-3 font-mono"
         >
-          <span className="text-[#00ff41]">{">"}</span> {t.hero.role}{" "}
-          <span className="text-[#00ff41]">::</span> {t.hero.course}
+          <span className="text-[var(--accent)]">{">"}</span> {t.hero.role}{" "}
+          <span className="text-[var(--accent)]">::</span> {t.hero.course}
         </motion.div>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.4 }}
-          className="font-mono text-sm text-[#a8e6a8] max-w-xl mb-8 leading-relaxed border-l-2 border-[#00ff41]/50 pl-4"
+          className="font-mono text-sm text-[var(--text-soft)] max-w-xl mb-8 leading-relaxed border-l-2 border-[var(--accent)]/50 pl-4"
         >
-          <span className="text-[#00ff41]">{">"}</span> {t.personal.description}
+          <span className="text-[var(--accent)]">{">"}</span> {t.personal.description}
         </motion.div>
 
         <motion.div
@@ -83,7 +83,7 @@ export default function Hero() {
         >
           <MapPin className="w-3 h-3" />
           <span>{t.hero.loc}</span>
-          <span className="text-[#a8e6a8]">{personalInfo.location}</span>
+          <span className="text-[var(--text-soft)]">{personalInfo.location}</span>
         </motion.div>
 
         <motion.div
@@ -96,8 +96,8 @@ export default function Hero() {
             href={personalInfo.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 px-5 py-2.5 bg-[#00ff41] hover:bg-[#22ff61] text-[#050807] font-mono font-bold text-xs uppercase tracking-widest transition-all rounded-sm"
-            style={{ boxShadow: "0 0 16px rgba(0, 255, 65, 0.4)" }}
+            className="group flex items-center gap-2 px-5 py-2.5 bg-[var(--accent)] hover:bg-[var(--accent)] text-[var(--background)] font-mono font-bold text-xs uppercase tracking-widest transition-all rounded-sm"
+            style={{ boxShadow: "0 0 16px var(--accent-glow)" }}
           >
             <LinkedinIcon className="w-4 h-4" />
             [ LINKEDIN ]
@@ -107,7 +107,7 @@ export default function Hero() {
             href={personalInfo.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="group flex items-center gap-2 px-5 py-2.5 border border-[#00ff41]/40 hover:border-[#00ff41] hover:bg-[#00ff41]/5 text-[#00ff41] font-mono font-bold text-xs uppercase tracking-widest transition-all rounded-sm"
+            className="group flex items-center gap-2 px-5 py-2.5 border border-[var(--accent)]/40 hover:border-[var(--accent)] hover:bg-[var(--accent)]/5 text-[var(--accent)] font-mono font-bold text-xs uppercase tracking-widest transition-all rounded-sm"
           >
             <GithubIcon className="w-4 h-4" />
             [ GITHUB ]
@@ -121,7 +121,7 @@ export default function Hero() {
           transition={{ delay: 1.2 }}
           className="mt-12 font-mono text-xs muted"
         >
-          <span className="text-[#00ff41]">root@bielmfranco</span>:~$
+          <span className="text-[var(--accent)]">root@bielmfranco</span>:~$
           <span className="cursor-blink"></span>
         </motion.div>
       </div>

@@ -10,12 +10,12 @@ export default function Achievements() {
 
   return (
     <SectionWrapper id="achievements" number="06" title={t.sections.achTitle} cmd={t.sections.achCmd}>
-      <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> {t.sections.achTailCmd}
+      <div className="font-mono text-xs text-[var(--muted)] uppercase tracking-widest mb-6">
+        <span className="text-[var(--accent)]">{">"}</span> {t.sections.achTailCmd}
       </div>
 
       <div className="relative max-w-3xl font-mono">
-        <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-[#00ff41] via-[#00ff41]/40 to-transparent" />
+        <div className="absolute left-2 top-2 bottom-2 w-px bg-gradient-to-b from-[var(--accent)] via-[var(--accent)]/40 to-transparent" />
 
         <div className="space-y-3">
           {achievements.map((item, i) => {
@@ -31,19 +31,19 @@ export default function Achievements() {
                 transition={{ duration: 0.4, delay: i * 0.06 }}
                 className="relative pl-10"
               >
-                <div className="absolute left-0 top-2.5 w-4 h-4 border border-[#00ff41] bg-[#050807] flex items-center justify-center" style={{ boxShadow: "0 0 8px rgba(0, 255, 65, 0.5)" }}>
-                  <span className="w-1.5 h-1.5 bg-[#00ff41]" />
+                <div className="absolute left-0 top-2.5 w-4 h-4 border border-[var(--accent)] bg-[var(--background)] flex items-center justify-center" style={{ boxShadow: "0 0 8px var(--accent-glow)" }}>
+                  <span className="w-1.5 h-1.5 bg-[var(--accent)]" />
                 </div>
 
                 <div className="card p-3">
                   <div className="flex items-center gap-2 mb-1 flex-wrap">
-                    <span className="text-[10px] text-[#00ff41] uppercase tracking-widest border border-[#00ff41]/40 px-1.5 py-0.5">
+                    <span className="text-[10px] text-[var(--accent)] uppercase tracking-widest border border-[var(--accent)]/40 px-1.5 py-0.5">
                       {item.year}
                     </span>
-                    <h3 className="text-xs font-bold text-white uppercase tracking-wide">{title}</h3>
+                    <h3 className="text-xs font-bold text-[var(--foreground)] uppercase tracking-wide">{title}</h3>
                   </div>
-                  <p className="text-[10px] text-[#a8e6a8] leading-relaxed">
-                    <span className="text-[#00ff41]">▸</span> {description}
+                  <p className="text-[10px] text-[var(--text-soft)] leading-relaxed">
+                    <span className="text-[var(--accent)]">▸</span> {description}
                   </p>
                 </div>
               </motion.div>

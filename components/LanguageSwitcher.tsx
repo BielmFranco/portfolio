@@ -26,7 +26,7 @@ export default function LanguageSwitcher() {
     <div ref={ref} className="relative font-mono">
       <button
         onClick={() => setOpen(!open)}
-        className="flex items-center gap-1.5 px-2 py-1 text-xs uppercase tracking-widest border border-[#00ff41]/30 hover:border-[#00ff41] hover:bg-[#00ff41]/5 text-[#00ff41] transition-all rounded-sm"
+        className="flex items-center gap-1.5 px-2 py-1 text-xs uppercase tracking-widest border border-[var(--accent)]/30 hover:border-[var(--accent)] hover:bg-[var(--accent)]/5 text-[var(--accent)] transition-all rounded-sm"
         aria-label="Change language"
       >
         <Globe className="w-3 h-3" />
@@ -41,8 +41,8 @@ export default function LanguageSwitcher() {
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -4 }}
             transition={{ duration: 0.15 }}
-            className="absolute right-0 top-full mt-1 min-w-[120px] bg-[#050807] border border-[#00ff41]/30 rounded-sm overflow-hidden z-50"
-            style={{ boxShadow: "0 0 16px rgba(0, 255, 65, 0.2)" }}
+            className="absolute right-0 top-full mt-1 min-w-[120px] bg-[var(--background)] border border-[var(--accent)]/30 rounded-sm overflow-hidden z-50"
+            style={{ boxShadow: "0 0 16px var(--accent-soft)" }}
           >
             {LANGS.map((l) => {
               const active = l.code === lang;
@@ -55,8 +55,8 @@ export default function LanguageSwitcher() {
                   }}
                   className={`w-full flex items-center gap-2 px-3 py-2 text-xs uppercase tracking-widest text-left transition-colors ${
                     active
-                      ? "text-[#00ff41] bg-[#00ff41]/10 glow-text"
-                      : "text-[#4a8a4f] hover:text-[#00ff41] hover:bg-[#00ff41]/5"
+                      ? "text-[var(--accent)] bg-[var(--accent)]/10 glow-text"
+                      : "text-[var(--muted)] hover:text-[var(--accent)] hover:bg-[var(--accent)]/5"
                   }`}
                 >
                   <span>{l.flag}</span>

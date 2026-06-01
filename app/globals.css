@@ -1,6 +1,7 @@
 @import "tailwindcss";
 
-:root {
+:root,
+[data-theme="dark"] {
   --background: #050807;
   --foreground: #d4f5d4;
   --accent: #00ff41;
@@ -11,6 +12,29 @@
   --card: #0a120c;
   --border: rgba(0, 255, 65, 0.15);
   --border-bright: rgba(0, 255, 65, 0.4);
+  --text-soft: #a8e6a8;
+  --scanline: rgba(0, 255, 65, 0.025);
+  --vignette: rgba(0, 0, 0, 0.4);
+  --grid-line: rgba(0, 255, 65, 0.05);
+  --matrix-rgb: 0, 255, 65;
+}
+
+[data-theme="light"] {
+  --background: #f4f7fb;
+  --foreground: #0a1929;
+  --accent: #0066ff;
+  --accent-dim: #0050cc;
+  --accent-soft: rgba(0, 102, 255, 0.08);
+  --accent-glow: rgba(0, 102, 255, 0.25);
+  --muted: #5a7894;
+  --card: #ffffff;
+  --border: rgba(0, 102, 255, 0.18);
+  --border-bright: rgba(0, 102, 255, 0.45);
+  --text-soft: #2a4258;
+  --scanline: rgba(0, 102, 255, 0.012);
+  --vignette: rgba(180, 200, 220, 0.15);
+  --grid-line: rgba(0, 102, 255, 0.06);
+  --matrix-rgb: 0, 102, 255;
 }
 
 @theme inline {
@@ -23,6 +47,7 @@
 
 html {
   scroll-behavior: smooth;
+  transition: background-color 0.3s ease;
 }
 
 body {
@@ -32,6 +57,7 @@ body {
   overflow-x: hidden;
   letter-spacing: 0;
   position: relative;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 /* CRT scanlines overlay */
@@ -44,8 +70,8 @@ body::before {
     0deg,
     transparent 0,
     transparent 2px,
-    rgba(0, 255, 65, 0.025) 2px,
-    rgba(0, 255, 65, 0.025) 3px
+    var(--scanline) 2px,
+    var(--scanline) 3px
   );
   z-index: 100;
   mix-blend-mode: overlay;
@@ -57,7 +83,7 @@ body::after {
   position: fixed;
   inset: 0;
   pointer-events: none;
-  background: radial-gradient(ellipse at center, transparent 40%, rgba(0, 0, 0, 0.4) 100%);
+  background: radial-gradient(ellipse at center, transparent 40%, var(--vignette) 100%);
   z-index: 99;
 }
 
@@ -77,14 +103,13 @@ body::after {
 ::selection {
   background: var(--accent);
   color: var(--background);
-  text-shadow: 0 0 4px var(--background);
 }
 
 .card {
   background: var(--card);
   border: 1px solid var(--border);
   border-radius: 4px;
-  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: border-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease, background-color 0.3s ease;
   position: relative;
 }
 
@@ -114,12 +139,20 @@ body::after {
 
 .card:hover {
   border-color: var(--border-bright);
-  box-shadow: 0 0 24px rgba(0, 255, 65, 0.1);
+  box-shadow: 0 0 24px rgba(var(--matrix-rgb), 0.1);
+}
+
+[data-theme="light"] .card:hover {
+  box-shadow: 0 8px 24px rgba(0, 102, 255, 0.12), 0 2px 8px rgba(0, 0, 0, 0.05);
 }
 
 .accent {
   color: var(--accent);
   text-shadow: 0 0 8px var(--accent-glow);
+}
+
+[data-theme="light"] .accent {
+  text-shadow: none;
 }
 
 .muted {
@@ -138,16 +171,17 @@ body::after {
   }
 }
 
-/* Matrix rain canvas wrapper */
 .matrix-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
-  opacity: 0.35;
   pointer-events: none;
 }
 
-/* Glitch text effect */
+[data-theme="light"] .matrix-bg {
+  opacity: 0.18 !important;
+}
+
 .glitch {
   position: relative;
   color: var(--foreground);
@@ -194,7 +228,6 @@ body::after {
   80% { transform: translate(-1px, 1px); }
 }
 
-/* Terminal blink cursor */
 .cursor-blink::after {
   content: "▊";
   color: var(--accent);
@@ -206,19 +239,20 @@ body::after {
   50% { opacity: 0; }
 }
 
-/* Neon glow box */
 .glow-box {
-  box-shadow: 0 0 0 1px var(--accent), 0 0 20px rgba(0, 255, 65, 0.3), inset 0 0 20px rgba(0, 255, 65, 0.05);
+  box-shadow: 0 0 0 1px var(--accent), 0 0 20px var(--accent-glow), inset 0 0 20px var(--accent-soft);
 }
 
-/* Binary backdrop */
+[data-theme="light"] .glow-box {
+  box-shadow: 0 0 0 1px var(--accent), 0 6px 20px rgba(0, 102, 255, 0.15), inset 0 0 0 transparent;
+}
+
 .binary-bg {
   background-image:
-    linear-gradient(to bottom, transparent, rgba(0, 255, 65, 0.03) 50%, transparent),
-    repeating-linear-gradient(0deg, transparent 0, transparent 19px, rgba(0, 255, 65, 0.04) 19px, rgba(0, 255, 65, 0.04) 20px);
+    linear-gradient(to bottom, transparent, var(--accent-soft) 50%, transparent),
+    repeating-linear-gradient(0deg, transparent 0, transparent 19px, var(--grid-line) 19px, var(--grid-line) 20px);
 }
 
-/* Pulsing dot for status */
 .pulse-dot {
   position: relative;
   display: inline-block;
@@ -243,7 +277,6 @@ body::after {
   100% { transform: scale(1.8); opacity: 0; }
 }
 
-/* HUD corner brackets for sections */
 .hud-corners {
   position: relative;
 }
@@ -272,12 +305,14 @@ body::after {
   border-right: 1px solid var(--accent);
 }
 
-/* Glow text */
 .glow-text {
   text-shadow: 0 0 10px var(--accent-glow), 0 0 20px var(--accent-glow);
 }
 
-/* Custom link */
+[data-theme="light"] .glow-text {
+  text-shadow: none;
+}
+
 .link-arrow {
   display: inline-flex;
   align-items: center;
@@ -291,10 +326,9 @@ body::after {
   text-shadow: 0 0 8px var(--accent-glow);
 }
 
-/* Cyber grid */
 .cyber-grid {
   background-image:
-    linear-gradient(rgba(0, 255, 65, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 255, 65, 0.05) 1px, transparent 1px);
+    linear-gradient(var(--grid-line) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
   background-size: 40px 40px;
 }

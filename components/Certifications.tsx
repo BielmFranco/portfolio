@@ -22,8 +22,8 @@ export default function Certifications() {
 
   return (
     <SectionWrapper id="certifications" number="04" title={t.sections.certsTitle} cmd={t.sections.certsCmd}>
-      <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> {t.sections.certsDecryptCmd}
+      <div className="font-mono text-xs text-[var(--muted)] uppercase tracking-widest mb-6">
+        <span className="text-[var(--accent)]">{">"}</span> {t.sections.certsDecryptCmd}
       </div>
 
       <div className="space-y-8">
@@ -35,10 +35,10 @@ export default function Certifications() {
             viewport={{ once: true }}
             transition={{ duration: 0.4, delay: gi * 0.06 }}
           >
-            <h3 className="text-xs font-mono font-bold text-[#00ff41] mb-3 flex items-center gap-2 uppercase tracking-widest glow-text">
-              <span className="w-6 h-px bg-[#00ff41]" />
+            <h3 className="text-xs font-mono font-bold text-[var(--accent)] mb-3 flex items-center gap-2 uppercase tracking-widest glow-text">
+              <span className="w-6 h-px bg-[var(--accent)]" />
               [ {issuer} ]
-              <span className="text-[#4a8a4f] text-[10px]">// {grouped[issuer].length} items</span>
+              <span className="text-[var(--muted)] text-[10px]">// {grouped[issuer].length} items</span>
             </h3>
             <div className="grid sm:grid-cols-2 gap-2">
               {grouped[issuer].map((cert) => (
@@ -46,20 +46,20 @@ export default function Certifications() {
                   key={cert.id}
                   className="card p-3 flex items-center gap-3 group font-mono"
                 >
-                  <span className="text-2xl flex-shrink-0 filter drop-shadow-[0_0_6px_rgba(0,255,65,0.4)]">{cert.emoji}</span>
+                  <span className="text-2xl flex-shrink-0 filter drop-shadow-[0_0_6px_var(--accent-glow)]">{cert.emoji}</span>
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 mb-0.5">
-                      <h4 className="text-xs font-bold text-white truncate uppercase tracking-wide">
+                      <h4 className="text-xs font-bold text-[var(--foreground)] truncate uppercase tracking-wide">
                         {cert.title}
                       </h4>
                       {cert.isNew && (
-                        <span className="text-[8px] font-bold text-[#00ff41] border border-[#00ff41] px-1 py-0.5 uppercase tracking-widest flex-shrink-0 glow-text">
+                        <span className="text-[8px] font-bold text-[var(--accent)] border border-[var(--accent)] px-1 py-0.5 uppercase tracking-widest flex-shrink-0 glow-text">
                           {t.badges.new}
                         </span>
                       )}
                     </div>
-                    <p className="text-[10px] text-[#4a8a4f] uppercase tracking-wider">
-                      <span className="text-[#00ff41]">▸</span> {cert.year}
+                    <p className="text-[10px] text-[var(--muted)] uppercase tracking-wider">
+                      <span className="text-[var(--accent)]">▸</span> {cert.year}
                     </p>
                   </div>
                 </div>

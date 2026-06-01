@@ -12,8 +12,8 @@ export default function Projects() {
 
   return (
     <SectionWrapper id="projects" number="03" title={t.sections.projectsTitle} cmd={t.sections.projectsCmd}>
-      <div className="font-mono text-xs text-[#4a8a4f] uppercase tracking-widest mb-6">
-        <span className="text-[#00ff41]">{">"}</span> {t.sections.projectsListCmd}
+      <div className="font-mono text-xs text-[var(--muted)] uppercase tracking-widest mb-6">
+        <span className="text-[var(--accent)]">{">"}</span> {t.sections.projectsListCmd}
       </div>
 
       <div className="grid md:grid-cols-2 gap-4">
@@ -38,29 +38,29 @@ export default function Projects() {
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex items-center gap-3">
-                  <span className="text-4xl filter drop-shadow-[0_0_10px_rgba(0,255,65,0.5)]">{project.emoji}</span>
+                  <span className="text-4xl filter drop-shadow-[0_0_10px_var(--accent-glow)]">{project.emoji}</span>
                   <div>
-                    <div className="text-[10px] text-[#4a8a4f] uppercase tracking-widest">{code}</div>
-                    <div className="text-[10px] text-[#00ff41] flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#00ff41] inline-block animate-pulse" />
+                    <div className="text-[10px] text-[var(--muted)] uppercase tracking-widest">{code}</div>
+                    <div className="text-[10px] text-[var(--accent)] flex items-center gap-1">
+                      <span className="w-1.5 h-1.5 rounded-full bg-[var(--accent)] inline-block animate-pulse" />
                       {t.badges.active}
                     </div>
                   </div>
                 </div>
                 {project.isReal && (
-                  <span className="text-[9px] font-bold text-[#00ff41] border border-[#00ff41]/40 px-2 py-0.5 uppercase tracking-widest">
+                  <span className="text-[9px] font-bold text-[var(--accent)] border border-[var(--accent)]/40 px-2 py-0.5 uppercase tracking-widest">
                     {t.badges.verified}
                   </span>
                 )}
-                <ArrowUpRight className="w-5 h-5 text-[#4a8a4f] group-hover:text-[#00ff41] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
+                <ArrowUpRight className="w-5 h-5 text-[var(--muted)] group-hover:text-[var(--accent)] group-hover:-translate-y-0.5 group-hover:translate-x-0.5 transition-all" />
               </div>
 
               <div>
-                <h3 className="text-lg font-bold text-white mb-2 group-hover:text-[#00ff41] transition-colors uppercase tracking-wide">
+                <h3 className="text-lg font-bold text-[var(--foreground)] mb-2 group-hover:text-[var(--accent)] transition-colors uppercase tracking-wide">
                   {title}
                 </h3>
-                <p className="text-xs text-[#a8e6a8] leading-relaxed">
-                  <span className="text-[#00ff41]">{">"}</span> {description}
+                <p className="text-xs text-[var(--text-soft)] leading-relaxed">
+                  <span className="text-[var(--accent)]">{">"}</span> {description}
                 </p>
               </div>
 
@@ -68,14 +68,14 @@ export default function Projects() {
                 {tags.map((tag) => (
                   <span
                     key={tag}
-                    className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[#00ff41]/20 text-[#00ff41] bg-[#00ff41]/5"
+                    className="px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider border border-[var(--accent)]/20 text-[var(--accent)] bg-[var(--accent)]/5"
                   >
                     {tag}
                   </span>
                 ))}
               </div>
 
-              <div className="flex items-center gap-1.5 text-[10px] text-[#4a8a4f] group-hover:text-[#00ff41] transition-colors pt-2 border-t border-[#00ff41]/10 uppercase tracking-wider">
+              <div className="flex items-center gap-1.5 text-[10px] text-[var(--muted)] group-hover:text-[var(--accent)] transition-colors pt-2 border-t border-[var(--accent)]/10 uppercase tracking-wider">
                 <GithubIcon className="w-3 h-3" />
                 <span>access: {project.github.replace("https://github.com/", "")}</span>
               </div>
