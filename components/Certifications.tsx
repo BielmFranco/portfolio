@@ -17,7 +17,7 @@ export default function Certifications() {
     {}
   );
 
-  const issuerOrder = ["Microsoft Learning", "Oracle", "USP", "SENAI", "FIAP", "Udemy"];
+  const issuerOrder = ["Microsoft Learning", "Oracle", "IBM", "USP", "SENAI", "FIAP", "Udemy"];
   const sorted = issuerOrder.filter((k) => grouped[k]);
 
   return (

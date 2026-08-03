@@ -115,6 +115,14 @@ export const certifications = [
     emoji: "🛠",
   },
   {
+    id: 14,
+    title: "Artificial Intelligence Fundamentals",
+    issuer: "IBM",
+    year: "Jun 2026",
+    isNew: true,
+    emoji: "🧬",
+  },
+  {
     id: 4,
     title: "Oracle AI Foundations",
     issuer: "Oracle",
