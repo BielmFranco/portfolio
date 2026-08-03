@@ -47,20 +47,15 @@ export default function Certifications() {
                   className="card p-3 flex items-center gap-3 group font-mono"
                 >
                   <span className="text-2xl flex-shrink-0 filter drop-shadow-[0_0_6px_var(--accent-glow)]">{cert.emoji}</span>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-2 mb-0.5">
-                      <h4 className="text-xs font-bold text-[var(--foreground)] truncate uppercase tracking-wide">
-                        {cert.title}
-                      </h4>
-                      {cert.isNew && (
-                        <span className="text-[8px] font-bold text-[var(--accent)] border border-[var(--accent)] px-1 py-0.5 uppercase tracking-widest flex-shrink-0 glow-text">
-                          {t.badges.new}
-                        </span>
-                      )}
-                    </div>
-                    <p className="text-[10px] text-[var(--muted)] uppercase tracking-wider">
-                      <span className="text-[var(--accent)]">▸</span> {cert.year}
-                    </p>
+                  <div className="flex-1 min-w-0 flex items-center gap-2">
+                    <h4 className="text-xs font-bold text-[var(--foreground)] truncate uppercase tracking-wide">
+                      {cert.title}
+                    </h4>
+                    {cert.isNew && (
+                      <span className="text-[8px] font-bold text-[var(--accent)] border border-[var(--accent)] px-1 py-0.5 uppercase tracking-widest flex-shrink-0 glow-text">
+                        {t.badges.new}
+                      </span>
+                    )}
                   </div>
                 </div>
               ))}
