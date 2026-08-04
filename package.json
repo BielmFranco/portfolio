@@ -1,12 +1,44 @@
 {
-  "name": "portfolio",
-  "version": "0.1.0",
+  "name": "gabriel-portfolio",
+  "version": "1.0.0",
   "private": true,
+  "description": "Portfolio pessoal cyber-intelligence · Next.js 16 · TypeScript · Tailwind · Framer Motion · Foco em IA, Azure AI Foundry e Cloud.",
+  "keywords": [
+    "portfolio",
+    "nextjs",
+    "typescript",
+    "tailwindcss",
+    "framer-motion",
+    "ai",
+    "azure-ai",
+    "cyber-intelligence",
+    "dark-mode",
+    "i18n"
+  ],
+  "author": {
+    "name": "Gabriel Moraes Franco",
+    "email": "gabrielmoraesprincipe@gmail.com",
+    "url": "https://github.com/BielmFranco"
+  },
+  "license": "MIT",
+  "homepage": "https://portfolio-orpin-ten-16.vercel.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/BielmFranco/portfolio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/BielmFranco/portfolio/issues",
+    "email": "gabrielmoraesprincipe@gmail.com"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "framer-motion": "^12.40.0",
